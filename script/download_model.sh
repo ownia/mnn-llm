@@ -7,10 +7,14 @@ model=$1
 mkdir $model
 cd $model
 is_7b=`echo $model | grep '7b'`
+is_4b=`echo $model | grep '4b'`
 is_1_8b=`echo $model | grep '1.8b'`
 block_num=27
 if [ $is_7b ]; then
     block_num=31
+fi
+if [ $is_4b ]; then
+    block_num=39
 fi
 if [ $is_1_8b ]; then
     block_num=23
@@ -18,6 +22,7 @@ fi
 # download models
 wget -c -nv https://github.com/wangzhaode/mnn-llm/releases/download/$model-mnn/tokenizer.txt
 wget -c -nv https://github.com/wangzhaode/mnn-llm/releases/download/$model-mnn/embedding.mnn
+wget -c -nv https://github.com/wangzhaode/mnn-llm/releases/download/$model-mnn/embeddings_bf16.bin
 wget -c -nv https://github.com/wangzhaode/mnn-llm/releases/download/$model-mnn/lm.mnn
 for i in `seq 0 $block_num`
 do
