@@ -5,7 +5,7 @@ git clone https://github.com/ownia/MNN.git -b workshop --depth=1
 cd MNN
 mkdir build
 cd build
-cmake -DMNN_LOW_MEMORY=ON ..
+cmake -DMNN_LOW_MEMORY=ON -DMNN_ARM82=ON ..
 make -j4
 cd ../..
 
